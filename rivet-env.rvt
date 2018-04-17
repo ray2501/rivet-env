@@ -1,0 +1,99 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <title>Webscripting for Tcl'ers</title>
+</head>
+<body>
+<br>
+<div align="center">
+<a href="https://tcl.apache.org/rivet/">
+<img alt="Apache Rivet" src="https://tcl.apache.org/rivet/picts/Rivetlogo_tiny.png">
+</a>
+</div>
+<br>
+<table align="center" width="80%" class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>Tcl</th>
+            <th>Version</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <? foreach {version} [info patchlevel] { ?>
+        <tr>
+            <td width="25%">Tcl</td>
+            <td><?= $version ?></td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>
+<br>
+<table align="center" width="80%" class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>Rivet</th>
+            <th>Version</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <? foreach {version} [package version Rivet] { ?>
+        <tr>
+            <td width="25%">Rivet</td>
+            <td><?= $version ?></td>
+        </tr>
+        <? } ?>
+        <? foreach {version} [package version rivetlib] { ?>
+        <tr>
+            <td width="25%">rivetlib</td>
+            <td><?= $version ?></td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>
+<br>
+<table align="center" width="80%" class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>Server</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <? foreach {key value} [::rivet::inspect server] { ?>
+        <tr>
+            <td width="25%"><?= $key ?></td>
+            <td><?= $value ?></td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>
+<br>
+<table align="center" width="80%" class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>env</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <? foreach name [array names env] { ?>
+        <tr>
+            <td width="25%"><?= $name ?></td>
+            <td><?= $env($name) ?></td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>
+<br>
+<div align="right">
+<? puts "This page was created on [clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"]" ?>
+</div>
+<br>
+</body>
+</html>
